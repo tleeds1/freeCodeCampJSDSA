@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Phone Number Validator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="heading"><h1>Cash Register Project</h1></div>
+        <span id="change-due"></span>
+        <div id="input-processing">
+            <label for="cash">Enter the cash from customer</label>
+            <input type="number" id="cash" class="user-input">
+            <button id="purchase-btn">Purchase</button>
+        </div>
+        <div class="cashier">
+            <p id="price-screen" class="price-screen">Total: $1.87</p>
+            <div id="cash-drawer" class="cash-drawer">
+                <p><strong>Change in the drawer:</strong></p>
+                <p>Pennies: $<span id="penny">1.01</span></p>
+                <p>Nickels: $<span id="nickel">2.05</span></p>
+                <p>Dimes: $<span id="dime">3.1</span></p>
+                <p>Quarters: $<span id="quarter">4.25</span></p>
+                <p>Ones: $<span id="one">90</span></p>
+                <p>Fives: $<span id="five">55</span></p>
+                <p>Tens: $<span id="ten">20</span></p>
+                <p>Twenties: $<span id="twenty">60</span></p>
+                <p>Hundreds: $<span id="onehundred">100</span></p>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

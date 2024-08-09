@@ -1,0 +1,126 @@
+:root {
+    --main-black: #0a0a23;
+    --main-white: #ffffff;
+    --main-purple: #5a01a7;
+    --main-green: #00471b;
+    --main-orange: #feac32;
+    --main-blue: #99c9ff;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    min-width: 500px;
+    overflow-y: none;
+}
+
+body {
+    background-color: var(--main-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.container {
+    position: relative;
+    min-width: 480px;
+    width: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+.heading {
+    width: 100%;
+    color: var(--main-white);
+    font-style: italic;
+    font-family: "Impact";
+    padding: 10px auto;
+}
+
+h1 {
+    font-size: 48px;
+}
+
+#change-due {
+    font-size: 1.2rem;
+    color: var(--main-white);
+}
+
+#input-processing {
+    min-height: 100px;
+    width: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    color: var(--main-white);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px 0 20px;
+}
+
+#input-processing label {
+    font-size: 20px;
+}
+
+.user-input {
+    height: 30px;
+    width: 250px;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 20px 10px 0px 10px;
+    border: 2px solid var(--main-purple);
+    position: relative;
+    color: var(--main-black);
+}
+
+#purchase-btn {
+    background-color: var(--main-orange);
+    height: 36px;
+    width: 100px;
+    color: var(--main-black);
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    margin-top: 20px;
+    font-size: 18px;
+    border: 1px solid #f6c275;
+}
+
+#purchase-btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.cashier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#price-screen {
+    color: var(--main-white);
+    font-size: 18px;
+    border: 10px solid var(--main-blue);
+    width: 240px;
+    padding: 10px 0;
+}
+
+#cash-drawer {
+    color: var(--main-white);
+    border: 10px solid var(--main-blue);
+    width: 240px;
+}
+
+.hide {
+    display: none;
+}
+
+@media (max-width: 500px) {
+    html, body {
+        min-width: 500px;
+        overflow-y: none;
+    }
+}
