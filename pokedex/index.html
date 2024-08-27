@@ -4,31 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Phone Number Validator</title>
+    <title>Pokémon Search App</title>
 </head>
 <body>
     <div class="container">
-        <div class="heading"><h1>Cash Register Project</h1></div>
-        <span id="change-due"></span>
-        <div id="input-processing">
-            <label for="cash">Enter the cash from customer</label>
-            <input type="number" id="cash" class="user-input">
-            <button id="purchase-btn">Purchase</button>
+        <div class="heading"><h1>POKEDEX</h1></div>
+        <div id="search">
+            <label for="search-input">Search Pokémon by Name or ID</label>
+            <input type="text" id="search-input" class="search-input" required>
+            <button id="search-button">Search</button>
         </div>
-        <div class="cashier">
-            <p id="price-screen" class="price-screen">Total: $1.87</p>
-            <div id="cash-drawer" class="cash-drawer">
-                <p><strong>Change in the drawer:</strong></p>
-                <p>Pennies: $<span id="penny">1.01</span></p>
-                <p>Nickels: $<span id="nickel">2.05</span></p>
-                <p>Dimes: $<span id="dime">3.1</span></p>
-                <p>Quarters: $<span id="quarter">4.25</span></p>
-                <p>Ones: $<span id="one">90</span></p>
-                <p>Fives: $<span id="five">55</span></p>
-                <p>Tens: $<span id="ten">20</span></p>
-                <p>Twenties: $<span id="twenty">60</span></p>
-                <p>Hundreds: $<span id="onehundred">100</span></p>
+        <div id="result">
+            <div class="name-id-size">
+                <div class="name-id">
+                    <span id="pokemon-name"></span>
+                    <span id="pokemon-id"></span>
+                </div>
+                <div class="size">
+                    <span id="weight"></span>
+                    <span id="height"></span>
+                </div>
             </div>
+            <div id="sprite-container" class="sprite-container"></div>
+            <div id="types"></div>
+        </div>
+        <div class="div-seperator"></div>
+        <div class="bottom-container">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Base</th>
+                        <th>Stats</th>
+                    </tr>
+                    <tr>
+                        <td>HP</td>
+                        <td id="hp"></td>
+                    </tr>
+                    <tr>
+                        <td>Attack</td>
+                        <td id="attack"></td>
+                    </tr>
+                    <tr>
+                        <td>Defense</td>
+                        <td id="defense"></td>
+                    </tr>
+                    <tr>
+                        <td>Sp. Attack</td>
+                        <td id="special-attack"></td>
+                    </tr>
+                    <tr>
+                        <td>Sp. Defense</td>
+                        <td id="special-defense"></td>
+                    </tr>
+                    <tr>
+                        <td>Speed</td>
+                        <td id="speed" class="speed"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Pokedex of Tho Le Doan - tleeds1</h3>
         </div>
     </div>
     <script src="./script.js"></script>

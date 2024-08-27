@@ -1,10 +1,13 @@
 :root {
     --main-black: #0a0a23;
-    --main-white: #ffffff;
+    --main-white: #f5f6f7;
     --main-purple: #5a01a7;
     --main-green: #00471b;
     --main-orange: #feac32;
     --main-blue: #99c9ff;
+    --main-red-bg: #A61415;
+    --screen: #AF9999;
+    --line-sep: #79060696;
 }
 
 html, body {
@@ -25,15 +28,17 @@ body {
 
 .container {
     position: relative;
-    min-width: 480px;
-    width: 480px;
+    min-width: 400px;
+    width: 400px;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    align-items: center;
 }
 
 .heading {
     width: 100%;
-    color: var(--main-white);
+    color: #ffffff;
     font-style: italic;
     font-family: "Impact";
     padding: 10px auto;
@@ -48,26 +53,29 @@ h1 {
     color: var(--main-white);
 }
 
-#input-processing {
+#search {
     min-height: 100px;
     width: 100%;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
+    border-radius: 20px 20px 0 0;
     color: var(--main-white);
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin: 10px 0 20px;
+    background-color: var(--main-red-bg);
+    padding-top: 20px;
+    margin-bottom: 0;
+    border: 10px solid var(--main-red-bg);
 }
 
-#input-processing label {
+#search label {
     font-size: 20px;
+    font-family: "Raleway", sans-serif;
 }
 
-.user-input {
+.search-input {
     height: 30px;
-    width: 250px;
+    width: 200px;
     text-align: center;
     font-size: 1.2rem;
     margin: 20px 10px 0px 10px;
@@ -76,11 +84,11 @@ h1 {
     color: var(--main-black);
 }
 
-#purchase-btn {
-    background-color: var(--main-orange);
+#search-button {
+    background-color: var(--main-green);
     height: 36px;
     width: 100px;
-    color: var(--main-black);
+    color: var(--main-white);
     font-family: "Raleway", sans-serif;
     font-weight: 700;
     margin-top: 20px;
@@ -88,36 +96,184 @@ h1 {
     border: 1px solid #f6c275;
 }
 
-#purchase-btn:hover {
+#search-button:hover {
     opacity: 0.8;
     cursor: pointer;
 }
 
-.cashier {
+#result {
+    width: 100%;
+    height: 240px;
+    background-color: var(--screen);
+    border: 10px solid var(--main-red-bg);
+}
+.name-id {
+    height: 28px;
+    font-size: 1.1em;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+}
+.size {
+    height: 22px;
+    font-size: 0.85rem;
+}
+.sprite-container {
+    flex-grow: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#sprite {
+    width: 180px;
+}
+img {
+    display: block;
+}
+#types {
+    min-height: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 5px;
+}
+.electric {
+    background-color: #fecc33;
+}
+
+.div-seperator {
+    width: 100%;
+    height: 10px;
+    background-color: var(--line-sep);
+    border: 1px solid var(--main-black);
+    border-radius: 2px;
+}
+.bottom-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    min-height: 325px;
+    background-color: var(--main-red-bg);
+    border: 10px solid var(--main-red-bg);
+    padding-top: 20px;
+    border-radius: 0 0 20px 20px;
 }
 
-#price-screen {
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    font-size: 1 rem;
+    color: #f5f6f7;
+    background-color:var(--main-green);
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+table tr {
+    border: 5px solid var(--screen);
+}
+td, th {
+    text-align: center;
+    padding: 8px;
+}
+tr > td:first-of-type {
+    width: 66.67%;
+    border-right: 5px solid var(--screen);
+}
+tr > td:last-of-type {
+    width: 33.33%;
+    border-left: 5px solid var(--screen);
+}
+tr > th:first-of-type {
+    width: 66.67%;
+    border-right: 5px solid var(--screen);
+}
+tr > th:last-of-type {
+    width: 33.33%;
+    border-left: 5px solid var(--screen);
+}
+.speed {
+    border-bottom: 0;
+}
+
+h3 {
+    font-style: italic;
     color: var(--main-white);
-    font-size: 18px;
-    border: 10px solid var(--main-blue);
-    width: 240px;
-    padding: 10px 0;
+    
 }
-
-#cash-drawer {
-    color: var(--main-white);
-    border: 10px solid var(--main-blue);
-    width: 240px;
-}
-
 .hide {
     display: none;
 }
 
+.name-id-size {
+    height: 28px;
+    font-size: 20px;
+    margin-top: 20px;
+    text-transform: capitalize;
+    margin-bottom: 5px;
+    color: var(--main-white);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.name-id {
+    margin-left: 20px;
+}
+
+.size {
+    width: 40%;
+    position: relative;
+    margin-right: 20px;
+    top: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.sprite {
+    width: 180px;
+    margin-top: -20px;
+}
+
+#types {
+    position: relative;
+    left: 20px;
+    top: -20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.btn {
+    height: 30px;
+    width: 75px;
+    border-radius: 5px;
+    text-align: center;
+    color: var(--main-white);
+}
+.electric {
+    background-color: var(--main-orange);
+}
+.ghost {
+    background-color: #9995d0;
+}
+.poison {
+    background-color: #c68bb7;
+}
+#pokemon-name {
+    text-transform: capitalize;
+}
 @media (max-width: 500px) {
     html, body {
         min-width: 500px;

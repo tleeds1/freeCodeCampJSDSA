@@ -1,115 +1,77 @@
-let price = 1.87;
+const pokemonAPI = "https://pokeapi-proxy.freecodecamp.rocks/api/pokemon/";
 
-let cid = [
-  ['PENNY', 1.01],
-  ['NICKEL', 2.05],
-  ['DIME', 3.1],
-  ['QUARTER', 4.25],
-  ['ONE', 90],
-  ['FIVE', 55],
-  ['TEN', 20],
-  ['TWENTY', 60],
-  ['ONE HUNDRED', 100]
-];
+const searchInput = document.getElementById("search-input");
+const nameElement = document.getElementById("pokemon-name");
+const idElement = document.getElementById("pokemon-id");
+const weightElement = document.getElementById("weight");
+const heightElement = document.getElementById("height");
+const hpElement = document.getElementById("hp");
+const attackElement = document.getElementById("attack");
+const defenseElement = document.getElementById("defense");
+const specialAttackElement = document.getElementById("special-attack");
+const specialDefenseElement = document.getElementById("special-defense");
+const speedElement = document.getElementById("speed");
+const searchButton = document.getElementById("search-button");
+const spriteContainer = document.getElementById("sprite-container");
+const types = document.getElementById("types");
 
-const moneyValue = [
-  ['PENNY', 0.01],
-  ['NICKEL', 0.05],
-  ['DIME', 0.1],
-  ['QUARTER', 0.25],
-  ['ONE', 1],
-  ['FIVE', 5],
-  ['TEN', 10],
-  ['TWENTY', 20],
-  ['ONE HUNDRED', 100]
-];
-
-const cash = document.getElementById("cash");
-const changeDue = document.getElementById("change-due");
-const purchaseBtn = document.getElementById("purchase-btn");
-const priceScreen = document.getElementById("price-screen");
-
-priceScreen.textContent = `Total: $${price}`;
-
-const cashDrawerSpans = document.querySelectorAll("#cash-drawer p span");
-
-cid.forEach(([denomination, amount]) => {
-  const key = denomination.toLowerCase().replace(' ', '');
-  cashDrawerSpans.forEach(span => {
-    if (span.id === key) {
-      span.textContent = amount;
-    }
-  });
-});
-
-const getChange = (diff) => {
-  let changeToGive = [];
-
-  for (let i =  moneyValue.length - 1; i >= 0; i--) {
-    const denomination = moneyValue[i][0];
-    const value = moneyValue[i][1];
-    const availableAmount = Math.round(cid[i][1] * 100) / 100;
-
-    if (diff <= 0) break;
-    if (availableAmount === 0 || value > diff) continue;
-
-    const maxToTake = Math.floor(availableAmount / value);
-    const amountToTake = Math.min(maxToTake, Math.floor(diff / value));
-
-    if (amountToTake > 0) {
-      const totalTaken = amountToTake * value;
-      changeToGive.push([denomination, totalTaken]);
-      diff -= totalTaken;
-      cid[i][1] -= totalTaken;
-      diff = Math.round(diff * 100) / 100; 
-    }
-  }
-  console.log(changeToGive);
-  console.log(diff);
-  if (diff >= 0.01) return null;
-
-  changeToGive.forEach(([denomination, amount]) => {
-    const key = denomination.toLowerCase().replace(' ', '');
-    const span = document.getElementById(key);
-    span.textContent = cid.find(([denom]) => denom === denomination)[1];
-  });
-
-  return changeToGive; // Return the change that was given
+const clear = () => {
+  nameElement.textContent = "";
+  idElement.textContent = "";
+  weightElement.textContent = "";
+  heightElement.textContent = "";
+  hpElement.textContent = "";
+  attackElement.textContent = "";
+  defenseElement.textContent = "";
+  specialAttackElement.textContent = "";
+  specialDefenseElement.textContent = "";
+  speedElement.textContent = "";
+  types.innerHTML = "";
+  spriteContainer.innerHTML = ""
 }
-
 const update = () => {
-  const cashValue = parseFloat(cash.value);
-  const diff = cashValue - price;
-  if (diff < 0) {
-    alert("Customer does not have enough money to purchase the item");
-    return;
-  } else if (diff === 0){
-    changeDue.textContent = "No change due - customer paid with exact cash";
-  } else {
-    changeDue.textContent = "Status: ";
-    const changeGiven = getChange(diff);
-    if (changeGiven === null) {
-      changeDue.textContent += "INSUFFICIENT_FUNDS";
-    } else {
-      let isAllZero = true;
-      cid.forEach(([_denomination, amount]) => {
-        if (amount !== 0) {
-          isAllZero = false;
-        }
-      });
-      if (isAllZero) {
-        changeDue.textContent += "CLOSED";
-        changeGiven.forEach(([deno, amount]) => {
-          changeDue.textContent += ` ${deno}: $${amount}`;
-        }) 
-      } else {
-        changeDue.textContent += "OPEN";
-        changeGiven.forEach(([deno, amount]) => {
-          changeDue.textContent += ` ${deno}: $${amount}`;
-        }) 
-      }
-    }
+  clear();
+  const value = searchInput.value.trim();
+  if (value) {
+    fetchData(value);
   }
 }
 
-purchaseBtn.addEventListener("click", update);
+
+const fetchData = async (query) => {
+  try {
+    const res = await fetch(`${pokemonAPI}${query.toLowerCase()}`);
+    if (!res.ok) {
+      alert("Pokémon not found");
+      return;
+    }
+    const data = await res.json();
+    displayPokemon(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const displayPokemon = (data) => {
+  nameElement.textContent = data.name.toUpperCase();
+  idElement.textContent = `#${data.id}`;
+  weightElement.textContent = `Weight: ${data.weight}`;
+  heightElement.textContent = `Height: ${data.height}`;
+  hpElement.textContent = data.stats[0].base_stat;
+  attackElement.textContent = data.stats[1].base_stat;
+  defenseElement.textContent = data.stats[2].base_stat;
+  specialAttackElement.textContent = data.stats[3].base_stat;
+  specialDefenseElement.textContent = data.stats[4].base_stat;
+  speedElement.textContent = data.stats[5].base_stat;
+
+  const spriteContainer = document.getElementById("sprite-container");
+  spriteContainer.innerHTML = `<img class="sprite" id="sprite" src="${data.sprites.front_default}" alt="${data.name}">`;
+  data.types.forEach(type => {
+    types.innerHTML += `
+      <button class="btn ${type.type.name}" disabled>${type.type.name}</button>
+    `
+  });
+};
+
+
+searchButton.addEventListener("click", update);
